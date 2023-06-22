@@ -58,8 +58,8 @@ const SearchPNR = () => {
     const value = event.target.value;
 
     if (name === "gds") {
+      dispatchPNR(setGDS(value));
     }
-    dispatchPNR(setGDS(value));
   };
   // useEffect(() => {
   //   console.log("statePNR:", statePNR);
@@ -112,9 +112,9 @@ const SearchPNR = () => {
             </div>
             <div className="form-group w40 group-checkbox mb2">
               <label>GDS</label>
-              {statePNR.gdsList.map((gds, index) => {
-                return (
-                  <div className="inline-space align-start">
+              <div className="inline-space align-start">
+                {statePNR.gdsList.map((gds, index) => {
+                  return (
                     <div className="custom-radio">
                       <input
                         type="radio"
@@ -135,37 +135,9 @@ const SearchPNR = () => {
                         {gds}
                       </label>
                     </div>
-                    <div className="custom-radio">
-                      <input
-                        type="radio"
-                        className="hidden-input"
-                        name="gds"
-                        id="radio2"
-                      />
-                      <label htmlFor="radio2" className="semibold">
-                        <span className="mr5px">
-                          <img src="img/ic_checklist.png" />
-                        </span>{" "}
-                        Galileo
-                      </label>
-                    </div>
-                    <div className="custom-radio">
-                      <input
-                        type="radio"
-                        className="hidden-input"
-                        name="gds"
-                        id="radio3"
-                      />
-                      <label htmlFor="radio3" className="semibold">
-                        <span className="mr5px">
-                          <img src="img/ic_checklist.png" />
-                        </span>{" "}
-                        Amadeus/AIDL
-                      </label>
-                    </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
             <div className="clearfix">
               <div className="pull-right">
