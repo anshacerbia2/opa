@@ -1,4 +1,9 @@
-import { INIT_GDS, INIT_OFFICEIDS, SET_OFFICEID } from "./searchPNR.constant";
+import {
+  INIT_GDS,
+  INIT_OFFICEIDS,
+  SET_GDS_TYPE,
+  SET_OFFICEID,
+} from "./searchPNR.constant";
 import type { ISearchPnrStates } from "./searchPNR.model";
 
 export interface Action {
@@ -16,6 +21,7 @@ export const createInitialState = () => {
       isAgent: false,
       isAgentTo: false,
     },
+    gdsList: ["Amadeus/AIDL", "Sabre", "Galileo"],
     searchPNR: {
       pnr: "",
       officeId: "",
@@ -33,6 +39,11 @@ const searchPnrReducer = (
       return {
         ...state,
         gds: action.payload,
+      };
+    case SET_GDS_TYPE:
+      return {
+        ...state,
+        gds: { ...state.gds, type: action.payload },
       };
     case INIT_OFFICEIDS:
       return {

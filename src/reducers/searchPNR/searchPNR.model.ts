@@ -7,6 +7,7 @@ export interface ISearchPnrStates {
     isAgent?: boolean;
     isAgentTo?: boolean;
   };
+  gdsList: string[];
   searchPNR: {
     pnr: string;
     officeId: string;

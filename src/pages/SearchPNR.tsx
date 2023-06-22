@@ -5,7 +5,11 @@ import { RootState } from "../redux/store";
 import searchPnrReducer, {
   createInitialState,
 } from "../reducers/searchPNR/searchPNR.reducer";
-import { initGDS, initOfficeIds } from "../reducers/searchPNR/searchPNR.action";
+import {
+  initGDS,
+  initOfficeIds,
+  setGDS,
+} from "../reducers/searchPNR/searchPNR.action";
 import GdsApis from "../redux/apis/gds/gds.api";
 
 const SearchPNR = () => {
@@ -27,7 +31,7 @@ const SearchPNR = () => {
       try {
         const response = await GdsApis.getOfficeIds();
         console.log(response);
-        const officeIds = response.json().map((obj: any) => {
+        const officeIds = response.map((obj: any) => {
           return obj.officeId;
         });
         return officeIds;
@@ -48,6 +52,18 @@ const SearchPNR = () => {
 
     fetchData();
   }, []);
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const name = event.target.name;
+    const value = event.target.value;
+
+    if (name === "gds") {
+    }
+    dispatchPNR(setGDS(value));
+  };
+  // useEffect(() => {
+  //   console.log("statePNR:", statePNR);
+  // }, [statePNR]);
 
   return (
     <>
@@ -96,51 +112,60 @@ const SearchPNR = () => {
             </div>
             <div className="form-group w40 group-checkbox mb2">
               <label>GDS</label>
-              <div className="inline-space align-start">
-                <div className="custom-radio">
-                  <input
-                    type="radio"
-                    className="hidden-input"
-                    name="radio-gds"
-                    id="radio1"
-                    checked
-                  />
-                  <label htmlFor="radio1" className="semibold">
-                    <span className="mr5px">
-                      <img src="img/ic_checklist.png" />
-                    </span>{" "}
-                    Sabre
-                  </label>
-                </div>
-                <div className="custom-radio">
-                  <input
-                    type="radio"
-                    className="hidden-input"
-                    name="radio-gds"
-                    id="radio2"
-                  />
-                  <label htmlFor="radio2" className="semibold">
-                    <span className="mr5px">
-                      <img src="img/ic_checklist.png" />
-                    </span>{" "}
-                    Galileo
-                  </label>
-                </div>
-                <div className="custom-radio">
-                  <input
-                    type="radio"
-                    className="hidden-input"
-                    name="radio-gds"
-                    id="radio3"
-                  />
-                  <label htmlFor="radio3" className="semibold">
-                    <span className="mr5px">
-                      <img src="img/ic_checklist.png" />
-                    </span>{" "}
-                    Amadeus/AIDL
-                  </label>
-                </div>
-              </div>
+              {statePNR.gdsList.map((gds, index) => {
+                return (
+                  <div className="inline-space align-start">
+                    <div className="custom-radio">
+                      <input
+                        type="radio"
+                        className="hidden-input"
+                        id={`gds-radio-${index}`}
+                        name="gds"
+                        value={gds}
+                        checked={gds === statePNR.gds.type}
+                        onChange={handleChange}
+                      />
+                      <label
+                        htmlFor={`gds-radio-${index}`}
+                        className="semibold"
+                      >
+                        <span className="mr5px">
+                          <img src="img/ic_checklist.png" />
+                        </span>{" "}
+                        {gds}
+                      </label>
+                    </div>
+                    <div className="custom-radio">
+                      <input
+                        type="radio"
+                        className="hidden-input"
+                        name="gds"
+                        id="radio2"
+                      />
+                      <label htmlFor="radio2" className="semibold">
+                        <span className="mr5px">
+                          <img src="img/ic_checklist.png" />
+                        </span>{" "}
+                        Galileo
+                      </label>
+                    </div>
+                    <div className="custom-radio">
+                      <input
+                        type="radio"
+                        className="hidden-input"
+                        name="gds"
+                        id="radio3"
+                      />
+                      <label htmlFor="radio3" className="semibold">
+                        <span className="mr5px">
+                          <img src="img/ic_checklist.png" />
+                        </span>{" "}
+                        Amadeus/AIDL
+                      </label>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
             <div className="clearfix">
               <div className="pull-right">
