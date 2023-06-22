@@ -1,0 +1,200 @@
+@import "./variable";
+
+.sidebar {
+  position: fixed;
+  left: $global-container-padding + px;
+  top: $global-container-padding + px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100vh - ($global-container-padding * 2px));
+  width: $sidebar-shrinked-width + px;
+  padding: 25px 0;
+  border-radius: 25px;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 142, 173, 1) 0%,
+    rgba(18, 165, 199, 1) 35%,
+    rgba(62, 186, 214, 1) 100%
+  );
+  color: #fff;
+  transition-property: width;
+  transition-duration: $sidebar-transition-duration + s;
+  transition-timing-function: $sidebar-transition-timing-function;
+  z-index: 500;
+  // @media screen and (min-width: 1400px) {
+  //   padding: 45px 0;
+  // }
+
+  > .logo-menu {
+    align-self: center;
+    svg {
+      width: 16px;
+      margin: 0 1px;
+      transition: 0.2s all;
+    }
+  }
+
+  > .menu-wrapper {
+    > ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+  }
+  .toggle-menu {
+    position: absolute;
+    top: 76px;
+    right: -15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+    border: 1px solid $light-gray;
+    border-radius: 50%;
+    background-color: #fff;
+    transition: 0.4s all;
+    box-shadow: 0px 4px 10px 0 rgba(17, 40, 103, 0.19);
+    cursor: pointer;
+
+    .icon-wrapper {
+      display: flex;
+      color: $blue;
+      font-size: 16px;
+      transition: 0.4s all;
+
+      &.open {
+        transform: rotate(180deg);
+      }
+    }
+    &:hover {
+      background-color: $blue;
+      span {
+        transform: rotate(360deg);
+        color: #fff;
+        &.open {
+          transform: rotate(540deg);
+        }
+      }
+    }
+  }
+}
+
+.sidebar.expanded {
+  width: $sidebar-expanded-width + px;
+
+  > .logo-menu {
+    svg {
+      margin: 0 3px;
+    }
+  }
+  .menu-item-title {
+    transition: transform 0.15s ease-in-out, visibility 0.15s ease-in-out,
+      opacity 0.15s ease-in-out;
+    transform: translateX(0);
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.menu-item {
+  position: relative;
+  user-select: none;
+  cursor: pointer;
+  // @media screen and (min-width: 1400px) {
+  // height: 65px;
+  // padding: 17px 25px;
+  // }
+  // &:last-child {
+  //   margin-bottom: 0;
+  // }
+  // &:hover,
+  // &.selected {
+  //   background-color: #f5f7fb52;
+  // }
+  // &.active {
+  //   &:before {
+  //     position: absolute;
+  //     content: "";
+  //     background-color: #fff;
+  //     width: 5px;
+  //     height: 30px;
+  //     left: 0;
+  //     top: 9px;
+  //     // @media screen and (min-width: 1400px) {
+  //     //   top: 17px;
+  //     // }
+  //   }
+  // }
+
+  > a {
+    display: flex;
+    align-items: center;
+    padding: $menu-item-link-padding-y + px $menu-item-link-padding-x + px;
+    height: 60px;
+    overflow: hidden;
+
+    > svg {
+      min-width: $sidebar-shrinked-width - ($menu-item-link-padding-x * 2) + px;
+      width: $sidebar-shrinked-width - ($menu-item-link-padding-x * 2) + px;
+    }
+  }
+  > .submenu-wrapper {
+    position: absolute;
+    width: 160px;
+    top: 0;
+    left: calc(100% + 7px);
+    height: auto;
+    background: linear-gradient(
+      180deg,
+      rgba(10, 142, 173, 1) 0%,
+      rgba(18, 165, 199, 1) 35%,
+      rgba(62, 186, 214, 1) 100%
+    );
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px 0 rgba(17, 40, 103, 0.19);
+    transition: height 0.2s ease-in-out, opacity 0.3s ease-in-out;
+
+    > .submenu-row {
+      display: flex;
+      flex-wrap: wrap;
+      cursor: pointer;
+
+      > .submenu-col {
+        flex-grow: 1;
+        display: block;
+        width: 50%;
+        padding: 10px 0;
+
+        > div {
+          padding: 10px 16px;
+          &:hover {
+            background-color: #f5f7fb52;
+          }
+        }
+
+        a {
+          color: #fff;
+        }
+      }
+    }
+
+    &.doubled {
+      width: 400px;
+      > .submenu-row > .submenu-col:last-child {
+        border-left: 1px solid rgba(255 255 255/33%);
+      }
+    }
+  }
+
+  .menu-item-title {
+    display: block;
+    margin-left: 8px;
+    color: #fff;
+    transform: translateX(25px);
+    visibility: hidden;
+    opacity: 0;
+  }
+}

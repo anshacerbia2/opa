@@ -1,0 +1,594 @@
+.order-table {
+  min-height: auto;
+  .inner-padding {
+    padding: 0 50px;
+  }
+  table {
+    width: 100%;
+    td,
+    th {
+      padding: 0;
+      vertical-align: top;
+    }
+  }
+
+  tbody td {
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+    // text-align: center;
+    position: relative;
+
+    .logo-airline {
+      margin-bottom: 10px;
+    }
+
+    .ic-logo-airline {
+      max-height: 25px;
+    }
+    h6 {
+      margin: 0;
+    }
+    .btnAstindo-darkblue {
+      margin-right: 0;
+    }
+  }
+
+  .details-wrapper {
+    display: none;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 1em;
+    padding-bottom: 2em;
+  }
+
+  .details {
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #e3dfee;
+
+    .w25 {
+      width: 25%;
+    }
+  }
+
+  thead th,
+  tfoot th {
+    font-weight: 400;
+  }
+
+  thead th,
+  thead td {
+    padding: 10px 0;
+    background-color: #fff9eb;
+    font-size: 14px;
+    border-bottom: 1px solid #efd7a2;
+    color: #775d26;
+    text-align: left;
+    .ic-sort {
+      margin-left: 2px;
+      margin-top: -3px;
+    }
+  }
+
+  .ic-arrow-right {
+    position: absolute;
+    top: 50%;
+    margin-top: -5px;
+    left: -27px;
+    max-height: 10px;
+    &.one-way {
+      left: -30px;
+    }
+  }
+
+  .ic-briefcase {
+    margin-left: 2px;
+    margin-top: -5px;
+  }
+
+  .details-flight-date {
+    margin-bottom: 1em;
+  }
+
+  .journey-line {
+    margin-left: 8%;
+    position: relative;
+    width: 50%;
+
+    .horizontal-line {
+      position: absolute;
+      top: 50%;
+      height: 1px;
+      width: 100%;
+      background-color: #ffc13b;
+
+      &:before {
+        content: "";
+        position: absolute;
+        top: -4px;
+        left: -8px;
+        width: 8px;
+        height: 8px;
+        background-color: white;
+        border: 2px solid #fec345;
+        border-radius: 50%;
+        z-index: 5;
+      }
+
+      &:after {
+        content: "";
+        position: absolute;
+        top: -4px;
+        right: -8px;
+        width: 8px;
+        height: 8px;
+        background-color: #fec345;
+        border: 2px solid #fec345;
+        border-radius: 50%;
+        z-index: 5;
+      }
+    }
+
+    span {
+      position: relative;
+      display: inline-block;
+      padding: 5px 10px;
+      background-color: #f4f2fa;
+      z-index: 5;
+      font-size: 11px;
+      color: #999;
+    }
+  }
+
+  .flight-list {
+    background-color: #f2f2fd;
+    cursor: pointer;
+    position: relative;
+    margin-bottom: 20px;
+    transition: 0.3s all;
+    border: 1px solid #ebebeb;
+    border-radius: 15px;
+    .show-details {
+      position: absolute;
+      background-color: #fff;
+      left: 50%;
+      bottom: -8px;
+      transform: translateX(-50%);
+      text-align: center;
+      z-index: 5;
+      color: #5442a1;
+      font-size: 12px;
+      display: none;
+    }
+
+    span.when-opened {
+      display: none;
+    }
+
+    .ic-arrow-details {
+      margin-left: 1em;
+      margin-right: 1em;
+    }
+
+    &:hover {
+      .show-details {
+        display: block;
+      }
+    }
+
+    &:last-child {
+      &:hover {
+        .show-details {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .is-open {
+    .details-wrapper {
+      max-height: 500px;
+    }
+
+    span.when-opened {
+      display: inline-block;
+    }
+
+    span.when-closed {
+      display: none;
+    }
+
+    .ic-arrow-details {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.absolute-duration {
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  background-color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.details-list {
+  position: relative;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  padding-left: 2em;
+  padding-right: 2em;
+  &.top-bordered {
+    border-top: 1px solid #ddd;
+  }
+  .absolute-duration {
+    background-color: #fff;
+    font-size: 11px;
+    margin-top: -2px;
+  }
+  h3 {
+    font-size: 24px;
+  }
+  p {
+    margin: 0;
+    font-size: 12px;
+  }
+  h6 {
+    font-size: 14px;
+  }
+  .ic-include-baggage,
+  .ic-include-fee,
+  .ic-include-meal {
+    max-width: 20px;
+  }
+}
+.see-detail {
+  .down-arrow {
+    transition: 0.3s all;
+    svg {
+      width: 8px;
+      path {
+        fill: $blue;
+      }
+    }
+    &.active {
+      svg {
+        transform: rotate(180deg);
+      }
+    }
+  }
+  .see-detail-text {
+    margin: 0 5px;
+  }
+}
+
+.wrapper-method-payment {
+  width: 200px;
+  background-color: #342962;
+  min-height: 500px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  overflow: hidden;
+  .hero-payment-method {
+    background-color: #261f48;
+  }
+  .new-tab-list {
+    cursor: pointer;
+    position: relative;
+    padding: 0 20px;
+    color: #999;
+    .lighten-tab {
+      background-color: #342962;
+      padding: 10px 0 10px 15px;
+      border-radius: 5px;
+      color: #999;
+    }
+    &.is-active .lighten-tab {
+      color: white;
+      background-color: #48388b;
+    }
+  }
+}
+.payment-content {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  width: calc(100% - 200px);
+  min-height: 497px;
+  .new-btn-checkout {
+    width: 70%;
+    padding: 10px;
+  }
+  .mr2percent {
+    margin-right: 2%;
+  }
+  .w4 {
+    width: 4%;
+  }
+  .w94 {
+    width: 94%;
+  }
+  .checkbox-validasi {
+    width: 14px;
+    height: 15px;
+  }
+  .box-notif-checkout {
+    background-color: #fafafa;
+    box-shadow: none;
+    border: 1px solid #f0f0f0;
+    ol {
+      padding: 0 1em;
+      margin: 0;
+      li {
+        margin-bottom: 10px;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+  .bank_checkout {
+    width: 125px;
+  }
+  .wrapper-item-transfer {
+    border: 1px solid #e4e4e4;
+    border-radius: 5px;
+    padding: 0.8em 2em;
+    cursor: pointer;
+    .bank-name {
+      margin-top: 6px;
+      font-size: 15px;
+    }
+    .w140px {
+      width: 140px;
+    }
+    .ic_bni {
+      width: 63px;
+      margin-top: 6px;
+    }
+    .ic_bri {
+      width: 85px;
+      margin-top: 6px;
+    }
+    .ic_permata {
+      width: 95px;
+      margin-top: 2px;
+    }
+    .ic_maybank {
+      width: 79px;
+      margin-top: 5px;
+    }
+    .ic_hana {
+      width: 96px;
+      margin-top: 8px;
+    }
+    .ic_bersama {
+      width: 49px;
+      margin-top: 3px;
+    }
+    .ic_prima {
+      width: 47px;
+      margin-top: 3px;
+    }
+  }
+  .wrapper-item-bank {
+    border: 1px solid #e4e4e4;
+    border-radius: 5px;
+    padding: 1.3em 1.5em 1.3em 2em;
+    height: 61px;
+    cursor: pointer;
+    .bank-method {
+      margin-top: 4px;
+    }
+    .ic_right_method {
+      width: 8px;
+      margin-top: 5px;
+    }
+    .ic_bcaklik {
+      width: 40px;
+      margin-top: -5px;
+    }
+    .ic_bca {
+      width: 53px;
+      margin-top: 5px;
+    }
+    .ic_bca_klikpay {
+      width: 64px;
+      margin-top: 5px;
+    }
+    .ic_mandiri {
+      width: 64px;
+    }
+  }
+}
+.timer {
+  background-color: #ffe5e5;
+  border-radius: 4px;
+  padding: 0.5em 1em;
+  text-align: center;
+  font-size: 16px;
+  span {
+    font-weight: 600;
+    color: #e33636;
+  }
+}
+
+.timer-text {
+  color: #e33636;
+}
+
+.booked-wrapper {
+  border-bottom: 1px solid $light-gray;
+  position: relative;
+  h5,
+  h6 {
+    margin: 0;
+    margin-bottom: 10px;
+  }
+  .booked-preview {
+    position: relative;
+    transform: scale(0);
+    transform-origin: 0% 50%;
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    max-height: 0;
+    overflow: hidden;
+    .booking-detail-wrapper {
+      padding: 1em;
+      max-height: 240px;
+      overflow-y: auto;
+    }
+    .ic-arrow-right {
+      position: absolute;
+      top: 50%;
+      margin-top: -4px;
+      left: -32px;
+      width: 16px;
+    }
+    h6 {
+      font-size: 16px;
+    }
+    .remove-booked {
+      position: absolute;
+      top: 14px;
+      right: 13px;
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+      text-align: center;
+      background-color: #e93c3c;
+      color: white;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 0.4s cubic-bezier(0.23, 1.2, 0.32, 1);
+      font-size: 16px;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+    .top-bordered {
+      border-top: 1px solid $light-gray;
+    }
+  }
+  &.is-booked {
+    &:after {
+      transform: scale(0) rotate(-90deg);
+    }
+    .booked-preview {
+      transform: scale(1);
+      max-height: 500px;
+    }
+    .empty-state {
+      display: none;
+    }
+  }
+}
+
+.popup-wrapper {
+  .flight-details {
+    position: relative;
+    padding: 20px 15px 20px 20px;
+    border-bottom: 1px solid #dcd9ed;
+  }
+
+  .w85 {
+    width: calc(100% - 80px) !important;
+  }
+
+  .js-close-popup {
+    cursor: pointer;
+  }
+
+  .journey-line {
+    margin-top: 12px;
+    position: relative;
+    width: 100%;
+
+    .horizontal-line {
+      position: absolute;
+      top: 100%;
+      height: 1px;
+      width: 100%;
+      background-color: #ffc13b;
+
+      &:before {
+        content: "";
+        position: absolute;
+        top: -4px;
+        left: -8px;
+        width: 8px;
+        height: 8px;
+        background-color: white;
+        border: 2px solid #fec345;
+        border-radius: 50%;
+        z-index: 5;
+      }
+
+      &:after {
+        content: "";
+        position: absolute;
+        top: -4px;
+        right: -8px;
+        width: 8px;
+        height: 8px;
+        background-color: #fec345;
+        border: 2px solid #fec345;
+        border-radius: 50%;
+        z-index: 5;
+      }
+    }
+
+    span {
+      position: relative;
+      display: inline-block;
+      padding: 5px 10px;
+      background-color: white;
+      z-index: 5;
+      font-size: 11px;
+      color: #999;
+    }
+  }
+
+  .passangers-details {
+    padding: 20px 15px 20px 20px;
+    border-bottom: 1px solid #dcd9ed;
+  }
+
+  .details-flight-date {
+    margin-top: -10px;
+    margin-bottom: 5px;
+  }
+
+  .icon-panel {
+    width: 40px;
+    margin-right: 10px;
+    text-align: left;
+    svg {
+      width: 25px;
+      margin-left: 3px;
+      path {
+        fill: $dark-blue;
+      }
+    }
+  }
+
+  .copytext {
+    color: #666;
+    font-size: 12px;
+  }
+  .total-details {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .total-panel {
+    background-color: #fff4dc;
+    padding: 20px 15px;
+  }
+  .ic-logo-airline {
+    max-height: 25px;
+  }
+}

@@ -1,0 +1,273 @@
+.table-wrapper{
+	margin-bottom: 0;
+    position: relative;
+    .table-utility{
+    	display: flex;
+    	margin-bottom: 10px;
+    	.table-title{
+	    	font-family: 'Raleway', sans-serif;
+	    	font-size: 16px;
+	    	line-height: 21px;
+	    	padding-left: 5px;
+	    }
+    }
+    
+    .table-responsive{
+	    position: relative;
+	    // max-height: 400px;
+	    overflow: auto;
+	    .absolute-table{
+	    	display: inline-block;
+		    width: auto;
+		    min-width: 100%;
+		    white-space: nowrap;
+		    margin-bottom: 10px;
+		    .table-bordered{
+		    	border: none;
+		    }
+		    table{
+		    	margin-bottom: 0;
+		    	width: 100%;
+		    	thead{
+		    		&:first-child{
+		    			tr{
+		    				th{
+							    color: $black;
+							    font-weight: 600;
+							    padding: 8px 16px;
+							    border: none;
+							    vertical-align: middle;
+							    text-align: center;
+							    white-space: break-spaces;
+							    min-width: 40px;
+							    cursor: pointer;
+							    font-size: 13px;
+							    letter-spacing: 1px;
+							    font-family: 'Raleway', sans-serif;
+		    				}
+		    			}
+		    		}
+		    	}
+		    	tbody{
+		    		tr{
+		    			cursor: pointer;
+		    			td{
+		    				border: none;
+						    color: #646464;
+						    padding: 8px 16px;
+						    text-align: center;
+						    white-space: nowrap;
+						    vertical-align: middle;
+						    font-size: 13px;
+						    .nodata{
+				    			width: 100%;
+				    			text-align: center;
+				    			color: $gray;
+				    			text-transform: uppercase;
+				    			font-size: 13px;
+				    			letter-spacing: 1px;
+				    			padding: 10px;
+				    		}
+						    &.ws-normal{
+						    	white-space: normal;
+    							min-width: 330px;
+						    }
+						    i{
+						    	font-size: 18px;
+						    	color: #e7e4e4;
+						    	cursor: pointer;
+						    }
+						    button{
+						    	border: none;
+						    	width: 32px;
+						    	height: 30px;
+						    	background-color: #5891ad;
+						    	border-radius: 5px;
+						    	padding: 6px 0;
+						    	text-align: center;
+						    	transition: .2s all;
+						    	margin-right: 2px;
+						    	cursor: pointer;
+						    	position: relative;
+						    	span{
+						    		color: #979797;
+						    		font-size: 15px;
+    								padding-left: 9px;
+						    		&:last-child{
+						    			margin-right: 0;
+						    		}
+						    	}
+						    	svg{
+						    		width: 22px;
+						    		position: absolute;
+						    		top: 50%;
+						    		left: 50%;
+						    		transform: translate(-50%,-50%);
+						    		path, rect, polygon{
+						    			stroke: #fff;
+						    		}
+						    	}
+						    	i{
+						    		font-size: 14px;
+						    		color: #fff;
+						    	}
+						    	&:hover{
+						    		background-color: darken(#5891ad, 10%);
+						    	}
+						    }
+						    .status{
+						    	font-size: 10px;
+			    				padding: 7px 10px 5px;
+			    				border-radius: 8px;
+			    				text-transform: uppercase;
+			    				display: inline-block;
+			    				vertical-align: middle;
+						    	&.status-pending{
+						    		background-color: #ffdfb8;
+		    						color: #FFAF4E;
+						    	}
+						    	&.status-success{
+						    		background-color: #D0F4E8;
+		    						color: #37ad89;
+						    	}
+						    	&.status-fail{
+						    		background-color: #FFE1E8;
+		    						color: #C26678;
+						    	}
+						    	&.status-onprogress{
+			    					background-color: #d6d0f4;
+			    					color: #8037ad;
+			    				}
+			    				&.status-user{
+			    					background-color: #E5F0FF;
+		    						color: #7592d9;
+		    						margin-bottom: 5px;
+		    						margin-right: 1px;
+			    				}
+			    				&.js-toggle-status{
+			    					cursor: pointer;
+			    				}
+						    }
+		    			}
+		    			&:hover, &.selected{
+		    				background-color: #fff;
+		    			}
+		    			&:nth-child(odd){
+		    				
+		    			}
+		    		}
+		    	}
+		    	.flex-role-wrapper{
+		    		display: flex;
+		    		flex-wrap: wrap;
+		    		.role-item{
+		    			padding: 3px;
+		    			flex-grow: 0;
+		    			max-width: 100%;
+		    			flex-basis: 25%;
+		    			.role-item-circle{
+		    				font-size: 10px;
+		    				font-family: 'Raleway', sans-serif;
+		    				letter-spacing: 1px;
+		    				padding: 6px 10px;
+		    				border-radius: 8px;
+		    				text-transform: uppercase;
+		    				&.role-user{
+		    					background-color: #D0F4E8;
+		    					color: #37ad89;
+		    				}
+		    				&.role-admin{
+		    					background-color: #FFE1E8;
+		    					color: #C26678;
+		    				}
+		    				&.page-create-payment{
+		    					background-color: #E5F0FF;
+		    					color: #7592d9;
+		    				}
+		    				&.page-report{
+		    					background-color: #ffdfb8;
+		    					color: #FFAF4E;
+		    				}
+		    				&.page-template-form{
+		    					background-color: #d6d0f4;
+		    					color: #8037ad;
+		    				}
+		    			}
+		    		}
+		    	}
+		    }
+	    }
+    }
+}
+
+.custom-table, .custom-table2, .custom-table3, .custom-table4{
+	th{
+		background-color: #ebebeb;
+		&:first-child{
+			background-color: transparent;
+		}
+	}
+	.td-custom{
+		font-size: 13px;
+		font-weight: 600;
+		text-align: left !important;
+	}
+	tbody{
+		tr{
+			td{
+				.form-control{
+					text-align: right !important;
+					min-width: 90px;
+				}
+			}
+			&:last-child{
+				background-color: #fff2c8;
+				&:hover{
+					background-color: #fff2c8 !important;
+				}
+			}
+		}
+	}
+}
+.custom-table2{
+	tbody{
+		tr{
+			&:last-child{
+				background-color: transparent;
+				&:hover{
+					background-color: #fff !important;
+				}
+			}
+		}
+	}
+}
+
+.custom-table3, .custom-table4{
+	th{
+		background-color: #ebebeb;
+		&:first-child{
+			background-color: #ebebeb;
+		}
+	}
+}
+
+.custom-table4{
+	th, td{
+		font-size: 11px !important;
+		white-space: nowrap !important;
+	}
+	tbody{
+		tr{
+			background-color: #f3ecd6;
+			&:hover{
+				background-color: #fff !important;
+			}
+			&:last-child{
+				background-color: #f3ecd6 !important;
+				&:hover{
+					background-color: #fff !important;
+				}
+			}
+		}
+	}
+}

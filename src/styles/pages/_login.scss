@@ -1,0 +1,157 @@
+.container-login {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  .left-login,
+  .right-login {
+    width: 50%;
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .left-login {
+    background: url("/img/gradient4.jpeg");
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    // z-index: -1;
+    overflow: hidden;
+    .caption-login {
+      background: rgba(255, 255, 255, 0.2);
+      // border-radius: 16px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 3.5rem 2.5rem;
+      color: #fff;
+      font-size: 3rem;
+      font-family: "Raleway", sans-serif;
+      width: 60%;
+      max-width: 400px;
+      .caption-content {
+        line-height: 1.1;
+        font-weight: bold;
+        margin-bottom: 35px;
+        span {
+          color: $black;
+          font-size: 3.25rem;
+          margin-left: 20px;
+        }
+      }
+      .caption-desc {
+        font-size: 0.9rem;
+        line-height: 1.3;
+        font-family: "OpenSans", sans-serif;
+      }
+      .logo-span {
+        width: 50px;
+        vertical-align: middle;
+        display: inline-block;
+      }
+    }
+  }
+  .right-login {
+    .login-form-wrapper {
+      width: 50%;
+      margin-left: -10%;
+      color: $black;
+      .logo-agent {
+        width: 70px;
+        margin-bottom: 30px;
+      }
+      .say-hello {
+        color: $black;
+        font-weight: bold;
+        font-size: 24px;
+        font-family: "Raleway", sans-serif;
+        span {
+          vertical-align: middle;
+          display: inline-block;
+          img {
+            width: 30px;
+          }
+        }
+      }
+      .error-login {
+        background-color: #c44a2c;
+        padding: 10px;
+        width: 100%;
+        color: #fff;
+        font-size: 12px;
+        text-align: center;
+      }
+      input.form-control {
+        &.mandatory {
+          border: 1px solid #c44a2c;
+        }
+      }
+      .forgot-psw {
+        text-align: right;
+        background: linear-gradient(
+          90deg,
+          rgba(93, 174, 251, 1) 0%,
+          rgba(95, 127, 251, 1) 35%,
+          rgba(126, 115, 251, 1) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 12px;
+        font-family: "Raleway", sans-serif;
+        &:hover {
+          color: $dark-blue;
+          background: none;
+          -webkit-text-fill-color: $dark-blue;
+        }
+      }
+      .btn {
+        width: 100%;
+        font-size: 13px;
+        font-weight: 400;
+      }
+    }
+  }
+  $particleSize: 20vmin;
+  $animationDuration: 6;
+  $amount: 20;
+  .left-login .bokeh {
+    width: $particleSize;
+    height: $particleSize;
+    border-radius: $particleSize;
+    opacity: 0.5;
+    backface-visibility: hidden;
+    position: absolute;
+    animation-name: move;
+    animation-duration: $animationDuration;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    $colors: (#a9cad5, #fcfcfc, #fefefe);
+    @for $i from 1 through $amount {
+      &:nth-child(#{$i}) {
+        color: nth($colors, random(length($colors)));
+        top: random(100) * 1%;
+        left: random(100) * 1%;
+        animation-duration: calc(
+            (random($animationDuration * 10) / 10) * 1 + 10
+          ) +
+          s;
+        animation-delay: calc(
+            random(($animationDuration + 10) * 10) / 10 * -1
+          ) +
+          s;
+        transform-origin: (random(50) - 25) * 1vw (random(50) - 25) * 1vh;
+        $blurRadius: (random() + 0.5) * $particleSize * 0.5;
+        $x: if(random() > 0.5, -1, 1);
+        box-shadow: ($particleSize * 2 * $x) 0 $blurRadius currentColor;
+      }
+    }
+  }
+
+  @keyframes move {
+    100% {
+      transform: translate3d(0, 0, 1px) rotate(360deg);
+    }
+  }
+}
