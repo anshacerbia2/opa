@@ -3,12 +3,14 @@ import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { RootState } from "../redux/store";
 
 import searchPnrReducer, {
+  Action,
   createInitialState,
 } from "../reducers/searchPNR/searchPNR.reducer";
 import {
   initGDS,
   initOfficeIds,
   setGDS,
+  setOfficeId,
 } from "../reducers/searchPNR/searchPNR.action";
 import GdsApis from "../redux/apis/gds/gds.api";
 
@@ -53,17 +55,25 @@ const SearchPNR = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    console.log("statePNR:", statePNR);
+  }, [statePNR]);
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const name = event.target.name;
     const value = event.target.value;
+    let action: any;
 
     if (name === "gds") {
-      dispatchPNR(setGDS(value));
+      action = setGDS;
     }
+
+    if (name === "officeId") {
+      action = setOfficeId;
+    }
+
+    dispatchPNR(action(value));
   };
-  // useEffect(() => {
-  //   console.log("statePNR:", statePNR);
-  // }, [statePNR]);
 
   return (
     <>
@@ -95,18 +105,29 @@ const SearchPNR = () => {
             <div className="mb2 bold fz16">Search PNR</div>
             <div className="inline-space mb10px">
               <div className="form-group w50 mr1">
-                <label>PNR</label>
-                <input type="text" name="" className="form-control" />
+                <label htmlFor="pnr">PNR</label>
+                <input
+                  type="text"
+                  id="pnr"
+                  className="form-control"
+                  name="pnr"
+                  value={statePNR.searchPNR.pnr}
+                  required
+                />
               </div>
               <div className="form-group w50">
-                <label>Office ID</label>
+                <label htmlFor="officeId">Office ID</label>
                 <select
-                  name=""
-                  id=""
+                  id="officeId"
                   className="form-control block js-custom-select"
+                  name="officeId"
+                  value={statePNR.searchPNR.pnr}
                   required
                 >
-                  <option value="0">&nbsp;</option>
+                  <option value="">Choose Office Id</option>
+                  {statePNR.officeIds.map((officeId: string) => {
+                    return <option value={officeId}>{officeId}</option>;
+                  })}
                 </select>
               </div>
             </div>

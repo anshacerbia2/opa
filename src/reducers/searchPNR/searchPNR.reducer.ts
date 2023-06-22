@@ -11,12 +11,12 @@ export interface Action {
   payload?: any;
 }
 
-export const createInitialState = () => {
+export const createInitialState = (): ISearchPnrStates => {
   return {
     gds: {
       type: "",
       isAgentPLP: false,
-      isAgentBPS: false,
+      isAgentBSP: false,
       isAgentPLPAstindo: false,
       isAgent: false,
       isAgentTo: false,
