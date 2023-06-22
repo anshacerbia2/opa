@@ -1,10 +1,53 @@
+import { useEffect, useReducer } from "react";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { RootState } from "../redux/store";
 
+import searchPnrReducer, {
+  createInitialState,
+} from "../reducers/searchPNR/searchPNR.reducer";
+import { initGDS, initOfficeIds } from "../reducers/searchPNR/searchPNR.action";
+import { fetchOfficeIds } from "../reducers/searchPNR/searchPNR.utils";
+import GdsApis from "../redux/apis/gds/gds.api";
+
 const SearchPNR = () => {
-  const account = useAppSelector((state: RootState) => state.authorization);
+  const account = useAppSelector(
+    (state: RootState) => state.authorization.account
+  );
   const dispatch = useAppDispatch();
-  console.log("account:", account);
+  const [statePNR, dispatchPNR] = useReducer(
+    searchPnrReducer,
+    null,
+    createInitialState
+  );
+
+  useEffect(() => {
+    console.log("account:", account);
+
+    const fetchOfficeIds = async () => {
+      try {
+        const response = await GdsApis.getOfficeIds();
+        console.log(response);
+        const officeIds = response.json().map((obj: any) => {
+          return obj.officeId;
+        });
+        return officeIds;
+      } catch (error) {
+        console.log("Error on actions initOfficeIds:", error);
+        return error;
+      }
+    };
+
+    const fetchData = async () => {
+      if (account) {
+        dispatchPNR(initGDS(account));
+        const response = await fetchOfficeIds();
+        console.log(response);
+        dispatchPNR(initOfficeIds(response));
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <>

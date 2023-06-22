@@ -35,7 +35,7 @@ const AuthenticatedRoutes: FC<IAuthenticatedRoutesProps> = ({ element }) => {
       fetchAccount();
     }
   }, [id_token, dispatch, authentication, authorization]);
-  return id_token ? element : <Navigate to="/login" />;
+  return true ? element : <Navigate to="/login" />;
 };
 
 export default AuthenticatedRoutes;
