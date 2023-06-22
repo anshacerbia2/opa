@@ -21,18 +21,8 @@ const AuthenticatedRoutes: FC<IAuthenticatedRoutesProps> = ({ element }) => {
 
   useEffect(() => {
     // Fetch account
-    const fetchAccount = async () => {
-      try {
-        if (id_token) {
-          await dispatch(getAuthorization(id_token));
-        }
-      } catch (error) {
-        console.log("ERROR on AuthenticatedRoutes:", error);
-      }
-    };
-    // Refetch when page reloaded
-    if (id_token && !authorization.account) {
-      fetchAccount();
+    if (id_token && id_token.trim() && !authorization.account) {
+      dispatch(getAuthorization(id_token));
     }
   }, [id_token, dispatch, authentication, authorization]);
   return true ? element : <Navigate to="/login" />;

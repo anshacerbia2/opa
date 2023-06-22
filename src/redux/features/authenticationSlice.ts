@@ -55,7 +55,7 @@ const authenticationSlice = createSlice({
       .addCase(getAuthentication.fulfilled, (state, action) => {
         state.isAuthenticated = true;
         state.error = null;
-        sessionStorage.setItem("id_token", action.payload.id_token);
+        localStorage.setItem("id_token", action.payload.id_token);
       })
       .addCase(getAuthentication.rejected, (state, action) => {
         state.error = action.error;

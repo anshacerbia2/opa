@@ -6,7 +6,6 @@ import searchPnrReducer, {
   createInitialState,
 } from "../reducers/searchPNR/searchPNR.reducer";
 import { initGDS, initOfficeIds } from "../reducers/searchPNR/searchPNR.action";
-import { fetchOfficeIds } from "../reducers/searchPNR/searchPNR.utils";
 import GdsApis from "../redux/apis/gds/gds.api";
 
 const SearchPNR = () => {
