@@ -15,6 +15,24 @@ export interface Action {
 export const createInitialState = (): ISearchPnrStates => {
   return {
     step: 1,
+    steps: [
+      {
+        linkTo: "/",
+        name: "Dashboard",
+      },
+      {
+        linkTo: "/search-pnr",
+        name: "Search PNR",
+      },
+      {
+        linkTo: null,
+        name: "Result",
+      },
+      {
+        linkTo: null,
+        name: "Payment",
+      },
+    ],
     gds: {
       type: "",
       isAgentPLP: false,
@@ -23,12 +41,49 @@ export const createInitialState = (): ISearchPnrStates => {
       isAgent: false,
       isAgentTo: false,
     },
-    gdsList: ["Amadeus/AIDL", "Sabre", "Galileo"],
+    gdsList: [
+      { name: "Amadeus/AIDL", value: "AMADEUSAIDL" },
+      { name: "Sabre", value: "Sabre" },
+      { name: "Galileo", value: "Galileo" },
+    ],
     searchPNR: {
       pnr: "",
       officeId: "",
     },
     officeIds: [],
+    isLoading: false,
+    //  isGenerateLinkBSP = true;
+    //       isPaymentBSP = true;
+
+    //       responseError = false;
+    //       itineraries = null;
+
+    //       method = "doku";
+    //       paymentRequests = [];
+    //       paymentRequest = {};
+    //       allowedPaymentMethods = [];
+
+    //       paymentRequest.mandiriCardNumber = "";
+    //       paymentRequest.bypass = false;
+    //       paymentRequest.serviceFee = "0";
+
+    //       modalData = {};
+    //       transactionId = null;
+
+    //       step = "search";
+    //       isSearching = false;
+    //       isPaying = false;
+    //       group = false;
+
+    //       isRepricing = false;
+
+    //       showDetails = false;
+
+    //       pricingRequired = false;
+    //       acknowledgePricing = false;
+    //       doNotSendTourbillonMail = false;
+
+    //       gdsPay = "AMADEUSAIDL";
   };
 };
 

@@ -4,12 +4,12 @@ import {
   ThunkAction,
   Action,
 } from "@reduxjs/toolkit";
-import counterReducer from "./features/counterSlice";
+import globalReducer from "./features/globalSlice";
 import authenticationReducer from "./features/authenticationSlice";
 import authorizationReducer from "./features/authorizationSlice";
 
 const rootReducer = combineReducers({
-  counter: counterReducer,
+  global: globalReducer,
   authentication: authenticationReducer,
   authorization: authorizationReducer,
 });

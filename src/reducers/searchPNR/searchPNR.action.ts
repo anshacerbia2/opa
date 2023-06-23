@@ -24,24 +24,24 @@ export const initGDS = (account: any) => {
       gds.type = "Galileo";
     } else if (account.agent.routingPayment == "DEFAULT") {
       gds.isAgent = false;
-      gds.type = "Amadeus/AIDL";
+      gds.type = "AMADEUSAIDL";
     } else if (account.agent.routingPayment == "GENERATE_LINK") {
       gds.isAgent = false;
       gds.isAgentTo = true;
-      gds.type = "Amadeus/AIDL";
+      gds.type = "AMADEUSAIDL";
     } else if (account.agent.routingPayment == "MULTI_ROUTE") {
       gds.isAgent = false;
       gds.isAgentBSP = true;
-      gds.type = "Amadeus/AIDL";
+      gds.type = "AMADEUSAIDL";
     } else if (account.agent.routingPayment == "DIRECT_TO_PLP") {
       gds.isAgent = false;
       gds.isAgentPLP = true;
-      gds.type = "Amadeus/AIDL";
+      gds.type = "AMADEUSAIDL";
     } else if (account.agent.routingPayment == "DIRECT_TO_PLP_ASTINDO") {
       gds.isAgent = false;
       gds.isAgentPLPAstindo = true;
       gds.isAgentTo = true;
-      gds.type = "Amadeus/AIDL";
+      gds.type = "AMADEUSAIDL";
     }
   }
   return {

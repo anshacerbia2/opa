@@ -1,12 +1,14 @@
 const SERVER_API_URL = "http://localhost:8080/";
-const url = SERVER_API_URL + "api/gds/";
+const url = SERVER_API_URL + "api/amadeus-multi-credentials/";
+const urlAll = SERVER_API_URL + "api/amadeus-multi-credentials/all/";
+const urlDownlaod = SERVER_API_URL + "api/amadeus-multi-credentials/download/";
 
 const id_token =
   sessionStorage.getItem("id_token") || localStorage.getItem("id_token");
 
-class GdsApis {
-  public static retrievePNR(gds: string, pnr: string, officeId: string) {
-    return fetch(`${url}retrieve/${gds}/${pnr}/${officeId}`, {
+class AmadeusMultiCredentialsApis {
+  public static getOfficeIds() {
+    return fetch(`${url}office-ids`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -18,4 +20,4 @@ class GdsApis {
   }
 }
 
-export default GdsApis;
+export default AmadeusMultiCredentialsApis;

@@ -14,8 +14,9 @@ import {
   setOfficeId,
   setPNR,
 } from "../reducers/searchPNR/searchPNR.action";
-import GdsApis from "../redux/apis/gds/gds.api";
 import Stepper from "../components/stepper.tsx";
+import AmadeusMultiCredentialsApis from "../redux/apis/gds/amadeus-multi-credentials.api.ts";
+import GdsApis from "../redux/apis/gds/gds.api.ts";
 
 const SearchPNR = () => {
   const account = useAppSelector(
@@ -34,7 +35,7 @@ const SearchPNR = () => {
 
     const fetchOfficeIds = async () => {
       try {
-        const response = await GdsApis.getOfficeIds();
+        const response = await AmadeusMultiCredentialsApis.getOfficeIds();
         console.log(response);
         const officeIds = response.map((obj: any) => {
           return obj.officeId;
@@ -81,29 +82,26 @@ const SearchPNR = () => {
     }
   };
 
+  const handleSearchPNR = async () => {
+    let isValid =
+      statePNR.searchPNR.pnr.trim() &&
+      statePNR.searchPNR.officeId.trim() &&
+      statePNR.gdsList.some((gds) => gds.value === statePNR.gds.type) &&
+      !statePNR.isLoading;
+
+    if (isValid) {
+      const response = await GdsApis.retrievePNR(
+        statePNR.gds.type,
+        statePNR.searchPNR.pnr,
+        statePNR.searchPNR.officeId
+      );
+      console.log(response);
+    }
+  };
+
   return (
     <>
-      <Stepper
-        steps={[
-          {
-            linkTo: "/",
-            name: "Dashboard",
-          },
-          {
-            linkTo: "/search-pnr",
-            name: "Search PNR",
-          },
-          {
-            linkTo: null,
-            name: "Result",
-          },
-          {
-            linkTo: null,
-            name: "Payment",
-          },
-        ]}
-        currentStep={statePNR.step}
-      />
+      <Stepper steps={statePNR.steps} currentStep={statePNR.step} />
       <div id={styles.searchPNR}>
         <div className={styles["search-pnr-wrapper"]}>
           <h2>Search PNR</h2>
@@ -119,7 +117,7 @@ const SearchPNR = () => {
                         className="hidden-input"
                         id={`gds-radio-${index}`}
                         name="gds"
-                        value={gds}
+                        value={gds.value}
                         checked={gds === statePNR.gds.type}
                         onChange={handleChange}
                       />
@@ -130,7 +128,7 @@ const SearchPNR = () => {
                         <span className="mr5px">
                           <img src="img/ic_checklist.png" />
                         </span>{" "}
-                        {gds}
+                        {gds.name}
                       </label>
                     </div>
                   );
