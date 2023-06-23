@@ -1,0 +1,54 @@
+.c-form-group-floating {
+  position: relative;
+
+  &.inc-img {
+    > .c-form-control,
+    > .c-form-control-mask {
+      height: $c-form-floating-height + px;
+      padding: $c-form-floating-inc-img-padding;
+      text-overflow: ellipsis;
+    }
+  }
+
+  > .c-form-control {
+    position: relative;
+    height: $c-form-floating-height + px;
+    background-color: transparent;
+    z-index: 1;
+
+    &:focus ~ .c-control-label-wrapper > .c-control-label {
+      @include focused-label();
+    }
+  }
+
+  > .c-form-control {
+    &::placeholder {
+      color: transparent;
+    }
+  }
+
+  > .c-control-label-wrapper {
+    @include absolute();
+    display: flex;
+    align-items: center;
+    height: $c-form-floating-height + px;
+    padding-left: $c-form-floating-padding-left + px;
+
+    > .c-control-label {
+      margin-left: -6px;
+      padding: 0 6px;
+      background-color: $c-input-bg;
+      color: $c-input-color;
+      font-size: $c-input-font-size;
+      line-height: normal;
+      transform: translateY(0);
+      transition: 0.2s all ease;
+    }
+  }
+
+  > .c-form-control:not(:placeholder-shown)
+    ~ .c-control-label-wrapper
+    > .c-control-label {
+    @include focused-label();
+  }
+}

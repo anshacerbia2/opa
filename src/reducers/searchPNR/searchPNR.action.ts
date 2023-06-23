@@ -4,6 +4,7 @@ import {
   SET_GDS_TYPE,
   INIT_OFFICEIDS,
   SET_OFFICEID,
+  SET_PNR,
 } from "./searchPNR.constant";
 import GdsApis from "../../redux/apis/gds/gds.api";
 
@@ -52,6 +53,13 @@ export const initGDS = (account: any) => {
 export const setGDS = (value: string) => {
   return {
     type: SET_GDS_TYPE,
+    payload: value,
+  };
+};
+
+export const setPNR = (value: string) => {
+  return {
+    type: SET_PNR,
     payload: value,
   };
 };

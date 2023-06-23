@@ -1,0 +1,121 @@
+$stepper-arrow-width: 18;
+$stepper-bg-color: #3488b1 !default;
+
+.c-stepper-container {
+  margin-bottom: 45px;
+
+  > .c-stepper {
+    display: flex;
+    width: fit-content;
+    margin: 0;
+    padding: 0;
+    border-radius: $stepper-arrow-width + px;
+    background-color: #fff;
+    list-style: none;
+    overflow: hidden;
+
+    > li {
+      display: block;
+
+      &:first-child {
+        > .c-step-item {
+          margin-left: 0;
+          padding-left: $stepper-arrow-width * 2 + px;
+          &::before {
+            display: none;
+          }
+        }
+      }
+
+      &:last-child {
+        > .c-step-item {
+          margin-right: 0;
+          padding-right: $stepper-arrow-width * 2 + px;
+          &::after {
+            display: none;
+          }
+        }
+      }
+
+      &:not(:first-child) {
+        margin-left: -$stepper-arrow-width + 2 + px;
+      }
+
+      > .c-step-item {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: $stepper-arrow-width * 2 + px;
+        margin: 0 $stepper-arrow-width + px;
+        padding: 0 $stepper-arrow-width + px;
+        color: $black;
+        background: #ebebeb;
+        font-size: 13px;
+
+        &::before {
+          content: "";
+          position: absolute;
+          left: -$stepper-arrow-width + px;
+          top: 0;
+          width: 0;
+          height: 0;
+          border-width: $stepper-arrow-width + px;
+          border-style: solid;
+          border-color: transparent;
+          border-top-color: #ebebeb;
+          border-bottom-color: #ebebeb;
+          border-right: none;
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          right: -$stepper-arrow-width + px;
+          top: 0;
+          width: 0;
+          height: 0;
+          border-width: $stepper-arrow-width + px;
+          border-style: solid;
+          border-color: transparent;
+          border-left-color: #ebebeb;
+          border-right: none;
+          color: #ebebeb;
+        }
+
+        &.active {
+          background: $stepper-bg-color;
+          color: #fff;
+          cursor: default;
+
+          span {
+            border: 1px solid #d1d1d1;
+          }
+
+          &::before {
+            border-top-color: $stepper-bg-color;
+            border-bottom-color: $stepper-bg-color;
+          }
+
+          &::after {
+            border-left-color: $stepper-bg-color;
+          }
+        }
+
+        > span {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 24px;
+          height: 24px;
+          margin-right: 7px;
+          padding: 2px;
+          border-radius: 50%;
+          background-color: $stepper-bg-color;
+          color: #fff;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}

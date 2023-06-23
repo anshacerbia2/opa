@@ -3,6 +3,7 @@ import {
   INIT_OFFICEIDS,
   SET_GDS_TYPE,
   SET_OFFICEID,
+  SET_PNR,
 } from "./searchPNR.constant";
 import type { ISearchPnrStates } from "./searchPNR.model";
 
@@ -13,6 +14,7 @@ export interface Action {
 
 export const createInitialState = (): ISearchPnrStates => {
   return {
+    step: 1,
     gds: {
       type: "",
       isAgentPLP: false,
@@ -44,6 +46,11 @@ const searchPnrReducer = (
       return {
         ...state,
         gds: { ...state.gds, type: action.payload },
+      };
+    case SET_PNR:
+      return {
+        ...state,
+        searchPNR: { ...state.searchPNR, pnr: action.payload },
       };
     case INIT_OFFICEIDS:
       return {

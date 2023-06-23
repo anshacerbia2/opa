@@ -1,4 +1,5 @@
 export interface ISearchPnrStates {
+  step: number;
   gds: {
     type: string;
     isAgentPLP: boolean;
