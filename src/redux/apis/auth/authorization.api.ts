@@ -1,39 +1,18 @@
-export interface ICredentials {
-  username: string;
-  password: string;
-}
-
-export const authenticateAPI = (credentials: ICredentials) => {
-  return fetch("http://localhost:8080/api/authenticate", {
-    method: "POST",
-    body: JSON.stringify(credentials),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((response) => {
-      return response.json();
-    })
-    .catch((error) => {
-      return error;
-    });
-};
-
-export const accountAPI = (id_token: string) => {
-  return fetch("http://localhost:8080/api/account", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${id_token}`,
-    },
-  })
-    .then((response) => {
-      return response.json();
-    })
-    .catch((error) => {
-      return error;
-    });
-};
+// export const accountAPI = (id_token: string) => {
+//   return fetch("http://localhost:8080/api/account", {
+//     method: "GET",
+//     headers: {
+//       "Content-Type": "application/json",
+//       Authorization: `Bearer ${id_token}`,
+//     },
+//   })
+//     .then((response) => {
+//       return response;
+//     })
+//     .catch((error) => {
+//       return error;
+//     });
+// };
 
 // accountAPI response:
 // {

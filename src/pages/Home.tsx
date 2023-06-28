@@ -5,9 +5,6 @@ import { RootState } from "../redux/store";
 type Props = {};
 
 const Home = (props: Props) => {
-  const { account } = useAppSelector((state: RootState) => state.authorization);
-  console.log(account);
-
   return (
     <>
       <div className="left-content">

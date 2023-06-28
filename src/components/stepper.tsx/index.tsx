@@ -11,7 +11,7 @@ const Stepper = ({ steps, currentStep }: IStepperProps) => {
       <ul className="c-stepper">
         {steps.map((step, index) => {
           return step.linkTo !== null ? (
-            <li key={`step-${step}`}>
+            <li key={`step-${step.name}`}>
               <NavLink
                 to={step.linkTo}
                 className={
@@ -23,7 +23,7 @@ const Stepper = ({ steps, currentStep }: IStepperProps) => {
               </NavLink>
             </li>
           ) : (
-            <li key={`step-${step}`}>
+            <li key={`step-${step.name}`}>
               <div
                 className={
                   "c-step-item" + (currentStep === index ? " active" : "")

@@ -1,31 +1,36 @@
 import { FC, useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { useAppSelector } from "../redux/hooks";
 import { RootState } from "../redux/store";
-import { getAuthorization } from "../redux/features/authorizationSlice";
+import { useAccountQuery } from "../redux/apis/auth/authApi";
 
 interface IAuthenticatedRoutesProps {
   element: React.ReactNode;
 }
 
 const AuthenticatedRoutes: FC<IAuthenticatedRoutesProps> = ({ element }) => {
-  const authentication = useAppSelector(
-    (state: RootState) => state.authentication
-  );
-  const authorization = useAppSelector(
-    (state: RootState) => state.authorization
-  );
-  const dispatch = useAppDispatch();
-  const id_token =
-    sessionStorage.getItem("id_token") || localStorage.getItem("id_token");
+  const { data: account, error, isLoading } = useAccountQuery(undefined);
 
   useEffect(() => {
-    // Fetch account
-    if (id_token && id_token.trim() && !authorization.account) {
-      dispatch(getAuthorization(id_token));
+    // Check if account data exists
+    if (account) {
+      // Perform any additional actions with account data if needed
+      console.log("Account Data:", account);
     }
-  }, [id_token, dispatch, authentication, authorization]);
-  return true ? element : <Navigate to="/login" />;
+  }, [account]);
+
+  if (isLoading) {
+    // Optional: Show a loading indicator or skeleton screen
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    // Redirect to login page if an error occurred
+    return <Navigate to="/login" replace={true} />;
+  }
+
+  // Render the protected element if the account data is available
+  return account ? <>{element}</> : null;
 };
 
 export default AuthenticatedRoutes;

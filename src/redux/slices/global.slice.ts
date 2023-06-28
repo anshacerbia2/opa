@@ -10,7 +10,7 @@ const initialState: IGlobalState = {
 };
 
 export const globalSlice = createSlice({
-  name: "counter",
+  name: "global",
   initialState,
   reducers: {
     loading: (state, action: PayloadAction<boolean>) => {

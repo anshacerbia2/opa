@@ -1,14 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import InputError from "../components/error/InputError";
-import { useAppSelector, useAppDispatch } from "../redux/hooks";
+import { useAppSelector } from "../redux/hooks";
 import type { RootState } from "../redux/store";
-import { getAuthentication } from "../redux/features/authenticationSlice";
-const Login = () => {
-  const x = useAppSelector((state: RootState) => state.authentication);
-  console.log(x);
+import { useAuthenticateMutation } from "../redux/apis/auth/authApi";
 
-  const dispatch = useAppDispatch();
+const Login = () => {
+  const auth = useAppSelector((state: RootState) => state.auth);
+  const [authenticate, { isLoading, isSuccess, isError, error, data }] =
+    useAuthenticateMutation();
 
   const [credentials, setCredentials] = useState({
     username: "",
@@ -26,6 +26,12 @@ const Login = () => {
     password: "",
   });
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isSuccess && auth.idToken) {
+      navigate("/");
+    }
+  }, [isSuccess, auth.idToken]);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -52,16 +58,9 @@ const Login = () => {
     setErrorMessage(errMessage);
     if (!errField.username && !errField.password) {
       try {
-        const response = await dispatch(getAuthentication(credentials));
-        // if (response.payload.id_token) {
-        navigate("/");
-        // }
-        // if (originalPromiseResult.ok) navigate("");
-
-        // handle result here
-      } catch (rejectedValueOrSerializedError) {
-        // handle error here
-        console.log(rejectedValueOrSerializedError, "2");
+        await authenticate(credentials);
+      } catch (error) {
+        console.log(error);
       }
     }
   };

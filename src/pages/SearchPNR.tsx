@@ -19,10 +19,7 @@ import AmadeusMultiCredentialsApis from "../redux/apis/gds/amadeus-multi-credent
 import GdsApis from "../redux/apis/gds/gds.api.ts";
 
 const SearchPNR = () => {
-  const account = useAppSelector(
-    (state: RootState) => state.authorization.account
-  );
-  const dispatch = useAppDispatch();
+  const account = useAppSelector((state: RootState) => state.auth);
   const [statePNR, dispatchPNR] = useReducer(
     searchPnrReducer,
     null,
@@ -33,30 +30,30 @@ const SearchPNR = () => {
   useEffect(() => {
     console.log("account:", account);
 
-    const fetchOfficeIds = async () => {
-      try {
-        const response = await AmadeusMultiCredentialsApis.getOfficeIds();
-        console.log(response);
-        const officeIds = response.map((obj: any) => {
-          return obj.officeId;
-        });
-        return officeIds;
-      } catch (error) {
-        console.log("Error on actions initOfficeIds:", error);
-        return error;
-      }
-    };
+    if (account) {
+      const fetchOfficeIds = async () => {
+        try {
+          const response = await AmadeusMultiCredentialsApis.getOfficeIds();
+          console.log(response);
+          const officeIds = response.map((obj: any) => {
+            return obj.officeId;
+          });
+          return officeIds;
+        } catch (error) {
+          console.log("Error on actions initOfficeIds:", error);
+          return error;
+        }
+      };
 
-    const fetchData = async () => {
-      if (account) {
+      const fetchData = async () => {
         dispatchPNR(initGDS(account));
         const response = await fetchOfficeIds();
         console.log(response);
         dispatchPNR(initOfficeIds(response));
-      }
-    };
+      };
 
-    fetchData();
+      fetchData();
+    }
   }, []);
 
   useEffect(() => {
@@ -82,7 +79,10 @@ const SearchPNR = () => {
     }
   };
 
-  const handleSearchPNR = async () => {
+  const handleSearchPNR: React.FormEventHandler<HTMLFormElement> = async (
+    event
+  ) => {
+    event.preventDefault();
     let isValid =
       statePNR.searchPNR.pnr.trim() &&
       statePNR.searchPNR.officeId.trim() &&
@@ -96,16 +96,54 @@ const SearchPNR = () => {
         statePNR.searchPNR.officeId
       );
       console.log(response);
+      // if (data.status == "OK" || data.status == "WARNING") {
+      //   this.step = "result";
+
+      //   for (let i = 0; i < this.itineraries.length; i++) {
+      //     if (this.itineraries[i].pricingRequired == true) {
+      //       this.pricingRequired = true;
+      //     }
+      //     if (this.itineraries[i].itinerary.reissue == true) {
+      //       this.reissue = true;
+      //     }
+      //     // REVT
+      //     // if (this.itineraries[i].itinerary.depositRevt == true) {
+      //     //     this.depositRevt = true;
+      //     // }
+      //   }
+
+      //   if (this.itineraries.length == 1) {
+      //     this.paymentRequest.mandiriChallengeCode2 = this.totalPrice;
+      //     this.paymentRequest.mandiriChallengeCode3 = (
+      //       Math.floor(Math.random() * 90000) + 10000
+      //     ).toString();
+      //   }
+
+      //   this.updatePaymentMethod("initial");
+
+      //   this.paymentService.showBalance().subscribe((res) => {
+      //     this.showBalanceResponse = res;
+      //     const pattern = '<p name="lastbalance"(.*?)>(.*?)</p>';
+      //     const { statusMessage } = this.showBalanceResponse;
+
+      //     if (statusMessage !== null) {
+      //       this.dataHTML = statusMessage.match(pattern)[2];
+      //       this.dataHTML = parseFloat(this.dataHTML.replace(/,/g, ""));
+      //     }
+      //   });
+      // } else if (data.status == "ERROR") {
+      //   this.responseError = true;
+      // }
     }
   };
 
   return (
     <>
       <Stepper steps={statePNR.steps} currentStep={statePNR.step} />
+      <h2>Search PNR</h2>
       <div id={styles.searchPNR}>
         <div className={styles["search-pnr-wrapper"]}>
-          <h2>Search PNR</h2>
-          <form action="">
+          <form onSubmit={handleSearchPNR}>
             <div className="c-form-group">
               <div className="c-custom-radio-group">
                 <span className="c-custom-radio-name">GDS:</span>
@@ -118,7 +156,7 @@ const SearchPNR = () => {
                         id={`gds-radio-${index}`}
                         name="gds"
                         value={gds.value}
-                        checked={gds === statePNR.gds.type}
+                        checked={gds.value === statePNR.gds.type}
                         onChange={handleChange}
                       />
                       <label

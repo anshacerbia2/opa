@@ -22,10 +22,33 @@ export interface ISearchPnrStates {
   };
   officeIds: string[];
   isLoading: boolean;
+  retrievedPNR?: {
+    status: string;
+    itineraries: {}[];
+    currency: string;
+    paymentMethods: string[];
+    group: boolean;
+    konsorsium: boolean;
+    deposit: boolean;
+    deposit2: boolean;
+    total: string;
+    newTotal: string;
+    totalCommission: string;
+    totalDeposit: string;
+    totalOldDeposit: string;
+    totalDepositPerPax: string;
+    blockTransactionAmountPerPax: string;
+    blockTransactionAmountPerPax2: string;
+    totalPax: string;
+    totalPph: string;
+    totalPriceAgent: string;
+    newTotalPriceAgent: string;
+    updateDeposit: boolean;
+  };
   // isPaymentBSP: boolean;
   // isGenerateLinkBSP: boolean;
 
-  // responseError: false;
+  // responseError: boolean;
   // itineraries: null;
 
   // method: "doku";
