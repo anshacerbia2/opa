@@ -19,13 +19,24 @@ body {
 }
 
 h2 {
+  // padding-bottom: 8px;
+  // border-bottom: 2px solid #fff;
   color: #2f81a9;
   font-size: 36px;
+  line-height: 40px;
+
+  .c-subtitle {
+    display: block;
+    color: #b8c0cf;
+    font-size: 26px;
+    font-style: italic;
+    line-height: 26px;
+  }
 }
 
 h1,
 h2 {
-  margin-bottom: 25px;
+  margin-bottom: 18px;
 }
 
 // body {

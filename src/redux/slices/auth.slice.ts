@@ -21,8 +21,8 @@ const authSlice = createSlice({
     signOut: (state) => {
       localStorage.clear();
       sessionStorage.clear();
-      state.account = null;
       state.idToken = null;
+      state.account = null;
     },
   },
   extraReducers: (builder) => {
@@ -37,6 +37,8 @@ const authSlice = createSlice({
     builder.addMatcher(
       authApi.endpoints.authenticate.matchRejected,
       (state, action) => {
+        console.log("errorauth:", action);
+
         state.error = action.payload?.data;
         /**
          * Error response :

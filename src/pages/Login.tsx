@@ -7,8 +7,7 @@ import { useAuthenticateMutation } from "../redux/apis/auth/authApi";
 
 const Login = () => {
   const auth = useAppSelector((state: RootState) => state.auth);
-  const [authenticate, { isLoading, isSuccess, isError, error, data }] =
-    useAuthenticateMutation();
+  const [authenticate] = useAuthenticateMutation();
 
   const [credentials, setCredentials] = useState({
     username: "",
@@ -27,11 +26,13 @@ const Login = () => {
   });
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (isSuccess && auth.idToken) {
-      navigate("/");
-    }
-  }, [isSuccess, auth.idToken]);
+  // useEffect(() => {
+  //   if (isSuccess && auth.idToken) {
+  //     console.log(isSuccess, auth.idToken);
+
+  //     // navigate("/");
+  //   }
+  // }, [isSuccess, auth.idToken]);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const name = event.target.name;
     const value = event.target.value;

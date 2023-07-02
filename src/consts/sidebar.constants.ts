@@ -144,11 +144,11 @@ export const sidebarMenuLists: ISidebarMenuItem[] = [
     },
   },
   {
-    linkTo: "javascript:void(0)",
+    linkTo: "master",
     linkTitle: "Master Data",
     subMenu: [
       {
-        linkTo: "",
+        linkTo: "master/organization",
         linkTitle: "Organization",
       },
       {
@@ -156,15 +156,15 @@ export const sidebarMenuLists: ISidebarMenuItem[] = [
         linkTitle: "Agent Credential (1G / 1S)",
       },
       {
-        linkTo: "",
-        linkTitle: "Agent Credential (1A)",
-      },
-      {
-        linkTo: "",
+        linkTo: "master/organization-agreement",
         linkTitle: "Organization Agreement",
       },
       {
         linkTo: "",
+        linkTitle: "Agent Credential (1A)",
+      },
+      {
+        linkTo: "master/organization-dtu-account",
         linkTitle: "Organization DTU Account",
       },
       {

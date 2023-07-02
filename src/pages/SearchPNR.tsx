@@ -14,7 +14,7 @@ import {
   setOfficeId,
   setPNR,
 } from "../reducers/searchPNR/searchPNR.action";
-import Stepper from "../components/stepper.tsx";
+import Stepper from "../components/stepper/index.tsx";
 import AmadeusMultiCredentialsApis from "../redux/apis/gds/amadeus-multi-credentials.api.ts";
 import GdsApis from "../redux/apis/gds/gds.api.ts";
 
@@ -25,22 +25,17 @@ const SearchPNR = () => {
     null,
     createInitialState
   );
-  console.log();
 
   useEffect(() => {
-    console.log("account:", account);
-
     if (account) {
       const fetchOfficeIds = async () => {
         try {
           const response = await AmadeusMultiCredentialsApis.getOfficeIds();
-          console.log(response);
           const officeIds = response.map((obj: any) => {
             return obj.officeId;
           });
           return officeIds;
         } catch (error) {
-          console.log("Error on actions initOfficeIds:", error);
           return error;
         }
       };
@@ -48,7 +43,6 @@ const SearchPNR = () => {
       const fetchData = async () => {
         dispatchPNR(initGDS(account));
         const response = await fetchOfficeIds();
-        console.log(response);
         dispatchPNR(initOfficeIds(response));
       };
 
@@ -57,7 +51,7 @@ const SearchPNR = () => {
   }, []);
 
   useEffect(() => {
-    console.log("statePNR:", statePNR);
+    // console.log("statePNR:", statePNR);
   }, [statePNR]);
 
   const handleChange = (

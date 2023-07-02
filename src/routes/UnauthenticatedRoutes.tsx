@@ -1,7 +1,8 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { useAppSelector } from "../redux/hooks";
 import { RootState } from "../redux/store";
+import { useAccountQuery } from "../redux/apis/auth/authApi";
 
 interface IUnauthenticatedRoutesProps {
   element: React.ReactNode;
@@ -10,20 +11,13 @@ interface IUnauthenticatedRoutesProps {
 const UnauthenticatedRoutes: FC<IUnauthenticatedRoutesProps> = ({
   element,
 }) => {
-  const auth = useAppSelector((state: RootState) => state.auth);
-  const id_token =
-    sessionStorage.getItem("id_token") || localStorage.getItem("id_token");
+  const { idToken } = useAppSelector((state: RootState) => state.auth);
 
-  // if (!id_token?.trim() || auth.error || !auth.account) {
-  //   localStorage.removeItem("id_token");
-  //   sessionStorage.removeItem("id_token");
-  // }
-  return element;
-  // return !id_token?.trim() || auth.error || !auth.account ? (
-  //   element
-  // ) : (
-  //   <Navigate to="/" replace={true} />
-  // );
+  if (!idToken?.trim()) {
+    return <>{element}</>;
+  } else {
+    return <Navigate to="/" replace={true} />;
+  }
 };
 
 export default UnauthenticatedRoutes;

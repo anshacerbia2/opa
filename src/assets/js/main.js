@@ -140,7 +140,6 @@ $(document).on("click", ".js-toggle-status", function (e) {
 // menu animation
 $(".menu-wrapper li, .setting-menu").mouseenter(function () {
   var paths = $(this).find(".path-animate");
-  console.log(path, ">>>>>>>");
   [].forEach.call(paths, function (path) {
     var length = path.getTotalLength();
     path.style.transition = path.style.WebkitTransition = "none";

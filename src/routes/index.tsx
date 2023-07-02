@@ -5,7 +5,11 @@ import MainLayout from "../components/MainLayout";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import SearchPNR from "../pages/SearchPNR";
-
+import Master from "../pages/master";
+import MasterLayout from "../components/MasterLayout";
+import Organization from "../pages/master/Organization";
+import OrganizationAgreement from "../pages/master/OrganizationAgreement";
+import OrganizationDtuAccount from "../pages/master/OrganizationDtuAccount";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -18,6 +22,28 @@ const router = createBrowserRouter([
       {
         path: "search-pnr",
         element: <SearchPNR />,
+      },
+      {
+        path: "master",
+        element: <MasterLayout />,
+        children: [
+          {
+            path: "",
+            element: <Master />,
+          },
+          {
+            path: "organization",
+            element: <Organization />,
+          },
+          {
+            path: "organization-agreement",
+            element: <OrganizationAgreement />,
+          },
+          {
+            path: "organization-dtu-account",
+            element: <OrganizationDtuAccount />,
+          },
+        ],
       },
     ],
   },

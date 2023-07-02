@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export interface IStepperProps {
   steps: { linkTo: string | null; name: string }[];
@@ -12,7 +12,7 @@ const Stepper = ({ steps, currentStep }: IStepperProps) => {
         {steps.map((step, index) => {
           return step.linkTo !== null ? (
             <li key={`step-${step.name}`}>
-              <NavLink
+              <Link
                 to={step.linkTo}
                 className={
                   "c-step-item" + (currentStep === index ? " active" : "")
@@ -20,7 +20,7 @@ const Stepper = ({ steps, currentStep }: IStepperProps) => {
               >
                 <span>{index + 1}</span>
                 {step.name}
-              </NavLink>
+              </Link>
             </li>
           ) : (
             <li key={`step-${step.name}`}>
