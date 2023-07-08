@@ -230,6 +230,15 @@
   }
 }
 
+.c-form-error-message {
+  padding: 12px;
+  border-left: 4px solid #f00;
+  border-radius: 2px;
+  background: #fff;
+  color: #f00;
+  font-size: 14px;
+  font-weight: 500;
+}
 // .c-form-control {
 //   display: flex;
 //   align-items: center;

@@ -2,14 +2,22 @@ import { createBrowserRouter } from "react-router-dom";
 import AuthenticatedRoutes from "./AuthenticatedRoutes";
 import UnauthenticatedRoutes from "./UnauthenticatedRoutes";
 import MainLayout from "../components/MainLayout";
+import MasterLayout from "../components/MasterLayout";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import SearchPNR from "../pages/SearchPNR";
 import Master from "../pages/master";
-import MasterLayout from "../components/MasterLayout";
-import Organization from "../pages/master/Organization";
-import OrganizationAgreement from "../pages/master/OrganizationAgreement";
-import OrganizationDtuAccount from "../pages/master/OrganizationDtuAccount";
+import Agents from "../pages/master/Agents";
+import AgentDtuAccounts from "../pages/master/AgentDtuAccounts";
+import AmadeusMultiCredentials from "../pages/master/AmadeusMultiCredentials";
+import AgentPccCredentials from "../pages/master/AgentPccCredentials";
+import AgentCommissionAgreements from "../pages/master/AgentCommissionAgreements";
+import ApiCredentials from "../pages/master/ApiCredentials";
+import SystemParameters from "../pages/master/SystemParameters";
+import BankIdentificationNumbers from "../pages/master/BankIdentificationNumbers";
+import FlightDurationDeposits from "../pages/master/FlightDurationDeposits";
+import PricingUmroh from "../pages/master/PricingUmroh";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -32,16 +40,44 @@ const router = createBrowserRouter([
             element: <Master />,
           },
           {
-            path: "organization",
-            element: <Organization />,
+            path: "agents",
+            element: <Agents />,
           },
           {
-            path: "organization-agreement",
-            element: <OrganizationAgreement />,
+            path: "agent-dtu-accounts",
+            element: <AgentDtuAccounts />,
           },
           {
-            path: "organization-dtu-account",
-            element: <OrganizationDtuAccount />,
+            path: "amadeus-multi-credentials",
+            element: <AmadeusMultiCredentials />,
+          },
+          {
+            path: "agent-pcc-credentials",
+            element: <AgentPccCredentials />,
+          },
+          {
+            path: "agent-commission-agreements",
+            element: <AgentCommissionAgreements />,
+          },
+          {
+            path: "api-credentials",
+            element: <ApiCredentials />,
+          },
+          {
+            path: "system-parameters",
+            element: <SystemParameters />,
+          },
+          {
+            path: "bank-identification-numbers",
+            element: <BankIdentificationNumbers />,
+          },
+          {
+            path: "flight-duration-deposits",
+            element: <FlightDurationDeposits />,
+          },
+          {
+            path: "pricing-umroh-hb",
+            element: <PricingUmroh />,
           },
         ],
       },

@@ -7,7 +7,7 @@ import { useAuthenticateMutation } from "../redux/apis/auth/authApi";
 
 const Login = () => {
   const auth = useAppSelector((state: RootState) => state.auth);
-  const [authenticate] = useAuthenticateMutation();
+  const [authenticate, { data }] = useAuthenticateMutation();
 
   const [credentials, setCredentials] = useState({
     username: "",

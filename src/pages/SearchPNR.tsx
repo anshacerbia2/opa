@@ -89,45 +89,6 @@ const SearchPNR = () => {
         statePNR.searchPNR.pnr,
         statePNR.searchPNR.officeId
       );
-      console.log(response);
-      // if (data.status == "OK" || data.status == "WARNING") {
-      //   this.step = "result";
-
-      //   for (let i = 0; i < this.itineraries.length; i++) {
-      //     if (this.itineraries[i].pricingRequired == true) {
-      //       this.pricingRequired = true;
-      //     }
-      //     if (this.itineraries[i].itinerary.reissue == true) {
-      //       this.reissue = true;
-      //     }
-      //     // REVT
-      //     // if (this.itineraries[i].itinerary.depositRevt == true) {
-      //     //     this.depositRevt = true;
-      //     // }
-      //   }
-
-      //   if (this.itineraries.length == 1) {
-      //     this.paymentRequest.mandiriChallengeCode2 = this.totalPrice;
-      //     this.paymentRequest.mandiriChallengeCode3 = (
-      //       Math.floor(Math.random() * 90000) + 10000
-      //     ).toString();
-      //   }
-
-      //   this.updatePaymentMethod("initial");
-
-      //   this.paymentService.showBalance().subscribe((res) => {
-      //     this.showBalanceResponse = res;
-      //     const pattern = '<p name="lastbalance"(.*?)>(.*?)</p>';
-      //     const { statusMessage } = this.showBalanceResponse;
-
-      //     if (statusMessage !== null) {
-      //       this.dataHTML = statusMessage.match(pattern)[2];
-      //       this.dataHTML = parseFloat(this.dataHTML.replace(/,/g, ""));
-      //     }
-      //   });
-      // } else if (data.status == "ERROR") {
-      //   this.responseError = true;
-      // }
     }
   };
 

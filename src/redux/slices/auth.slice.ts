@@ -24,6 +24,9 @@ const authSlice = createSlice({
       state.idToken = null;
       state.account = null;
     },
+    clearError: (state) => {
+      state.error = null;
+    },
   },
   extraReducers: (builder) => {
     builder.addMatcher(
@@ -73,7 +76,7 @@ const authSlice = createSlice({
   },
 });
 
-export const { signOut } = authSlice.actions;
+export const { signOut, clearError } = authSlice.actions;
 export default authSlice.reducer;
 
 /**

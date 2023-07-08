@@ -1,8 +1,9 @@
 import { FC, useEffect } from "react";
 import { Navigate } from "react-router-dom";
-import { useAppSelector } from "../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { RootState } from "../redux/store";
 import { useAccountQuery } from "../redux/apis/auth/authApi";
+import { clearError } from "../redux/slices/auth.slice";
 
 interface IUnauthenticatedRoutesProps {
   element: React.ReactNode;

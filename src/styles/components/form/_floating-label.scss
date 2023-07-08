@@ -52,3 +52,39 @@
     @include focused-label();
   }
 }
+
+.c-form-bottom-animation {
+  position: relative;
+  border-bottom: 1px solid $c-input-border-color;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(
+      129deg,
+      rgba(83, 151, 169, 0.87) 0%,
+      rgb(23 140 187 / 90%) 80%,
+      rgb(15 112 169 / 85%) 100%
+    );
+    transform: scaleX(0);
+    transition: transform 0.2s cubic-bezier(0.76, 0.33, 0.28, 1.01);
+  }
+
+  &:has(> input:focus)::after {
+    transform: scaleX(1);
+  }
+
+  > .c-form-control {
+    padding-left: 0;
+    border: none;
+    border-radius: 0;
+  }
+
+  > .c-control-label-wrapper {
+    padding-left: 0;
+  }
+}

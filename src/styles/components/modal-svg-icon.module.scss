@@ -1,0 +1,98 @@
+.container {
+  margin-bottom: 12px;
+  text-align: center;
+
+  > svg {
+    width: 54px;
+    height: 54px;
+
+    @supports (
+      animation: grow 0.5s cubic-bezier(0.25, 0.25, 0.25, 1) forwards
+    ) {
+      > circle {
+        fill-opacity: 0;
+        stroke-width: 16px;
+        transform-origin: center;
+        transform: scale(0);
+
+        &.success-circle {
+          stroke: #219a00;
+          animation: growSuccess 1s cubic-bezier(0.25, 0.25, 0.25, 1.25)
+            forwards;
+        }
+
+        &.error-circle {
+          stroke: #e21616;
+          animation: growError 1s cubic-bezier(0.25, 0.25, 0.25, 1.25) forwards;
+        }
+      }
+
+      > path {
+        stroke-opacity: 0;
+
+        &.tick {
+          stroke-dasharray: 29px;
+          stroke-dashoffset: 29px;
+          animation: drawTick 0.5s cubic-bezier(0.25, 0.25, 0.25, 1) forwards;
+          animation-delay: 0.6s;
+        }
+
+        &.cross {
+          stroke-dasharray: 0 41px;
+          stroke-dashoffset: 0;
+          animation: drawCross 0.5s cubic-bezier(0.25, 0.25, 0.25, 1) forwards;
+          animation-delay: 0.6s;
+        }
+      }
+    }
+  }
+}
+
+@keyframes growSuccess {
+  60% {
+    transform: scale(0.8);
+    stroke-width: 4px;
+    fill-opacity: 0;
+  }
+  100% {
+    transform: scale(0.9);
+    stroke-width: 8px;
+    fill-opacity: 1;
+    fill: #219a00;
+  }
+}
+
+@keyframes growError {
+  60% {
+    transform: scale(0.8);
+    stroke-width: 4px;
+    fill-opacity: 0;
+  }
+  100% {
+    transform: scale(0.9);
+    stroke-width: 8px;
+    fill-opacity: 1;
+    fill: #e21616;
+  }
+}
+
+@keyframes drawTick {
+  0%,
+  100% {
+    stroke-opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes drawCross {
+  0% {
+    stroke-opacity: 1;
+    stroke-dasharray: 0;
+    stroke-dasharray: 0 41px;
+  }
+  100% {
+    stroke-opacity: 1;
+    stroke-dasharray: 41px 41px;
+  }
+}
